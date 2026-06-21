@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>IZUMI — Именная посуда с душой</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ===== 1. ПОДКЛЮЧЕНИЕ BOOTSTRAP CSS ===== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* ===== ОРИГИНАЛЬНЫЕ СТИЛИ (с минимальными правками для совместимости) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #7db0d9;
+            --blue-light: #b8d5ec;
+            --blue-dark: #5a92c0;
+            --white: #ffffff;
+            --text: #1e2a32;
+            --gray-mid: #e2e8f0;
+            --gray-light: #f8fafc;
+            --gray-text: #5c6f87;
+            --font: 'Raleway', sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            color: var(--text);
+            background: #ffffff;
+            font-size: 16px;
+            line-height: 1.45;
+            scroll-behavior: smooth;
+        }
+
+        /* ScrollSpy — отступ для якорей */
+        section[id] {
+            scroll-margin-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: var(--font);
+            background: none;
+            border: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== ШАПКА (исправленная) ===== */
+        header {
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            width: 100%;
+        }
+
+        /* Верхняя строка: поиск и иконки */
+        /* Верхняя строка: поиск и иконки */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    height: 50px; /* Уменьшено с 70px, чтобы схлопнуть высоту верхней строки */
+}
+
+/* ===== BOOTSTRAP NAVBAR (нижняя строка) ===== */
+.navbar-izumi {
+    background: #ffffff;
+    padding: 6px 0;
+    padding-top: 15px; /* Уменьшено с 35px, чтобы подтянуть навигацию ближе к поиску */
+    border-top: none;
+}
+        .header-search {
+            position: relative;
+            width: 340px;
+        }
+
+        .header-search input {
+            width: 100%;
+            height: 36px;
+            border: 1px solid #8FB2DD;
+            border-radius: 20px;
+            background: #fff;
+            color: #8FB2DD;
+            padding: 0 35px 0 16px;
+            font-size: 14px;
+            outline: none;
+            transition: width 0.3s ease, box-shadow 0.2s;
+        }
+
+        .header-search input:focus {
+            width: 400px;
+            box-shadow: 0 0 0 3px rgba(125, 176, 217, 0.3);
+        }
+
+        .header-search input::placeholder {
+            color: #8FB2DD;
+            opacity: 1;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .header-icons button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.2s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icons button:hover {
+            background: rgba(125, 176, 217, 0.1);
+            transform: scale(1.05);
+        }
+
+        .header-icons button svg {
+            width: 22px;
+            height: 22px;
+            stroke: #7db0d9;
+            stroke-width: 1.8;
+            fill: none;
+            transition: stroke 0.2s ease;
+        }
+
+        .header-icons button:hover svg {
+            stroke: #5a92c0;
+        }
+
+        /* Логотип — уменьшенный, перекрывает строки */
+        .header-logo {
+            position: absolute;
+            left: 50%;
+            bottom: -25px; /* чуть меньше выступ */
+            transform: translateX(-50%);
+            z-index: 20;
+        }
+
+        .header-logo img {
+            height: 60px; /* уменьшили с 80px */
+            width: auto;
+            transition: transform 0.2s;
+        }
+
+        .header-logo:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Бургер (скрыт на десктопе) */
+        .burger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px;
+            margin-right: 8px;
+            color: var(--blue-dark);
+            transition: 0.2s;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+        .burger-btn:hover {
+            background: rgba(125, 176, 217, 0.1);
+        }
+
+        /* ===== BOOTSTRAP NAVBAR (нижняя строка) — без разделителя, с левой и правой группой ===== */
+        .navbar-izumi {
+            background: #ffffff;
+            padding: 6px 0;
+            padding-top: 35px; /* уменьшили отступ, т.к. логотип стал ниже */
+            border-top: none;
+        }
+
+        /* Левая группа — прижата к левому краю */
+        .navbar-nav-left {
+            display: flex;
+            gap: 28px;
+            margin-right: auto;
+        }
+
+        /* Правая группа — прижата к правому краю */
+        .navbar-nav-right {
+            display: flex;
+            gap: 28px;
+            margin-left: auto;
+        }
+
+        .navbar-izumi .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            padding: 8px 0;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .navbar-izumi .nav-link:hover,
+        .navbar-izumi .nav-link.active {
+            color: var(--blue);
+        }
+
+        .navbar-izumi .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transition: transform 0.25s;
+        }
+
+        .navbar-izumi .nav-link:hover::after,
+        .navbar-izumi .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Для выпадающих списков (dropdown) внутри левой группы */
+        .navbar-izumi .dropdown-menu {
+            border-radius: 16px;
+            border: 1px solid var(--gray-mid);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            padding: 8px;
+        }
+
+        .navbar-izumi .dropdown-item {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .navbar-izumi .dropdown-item:hover {
+            background: var(--blue-light);
+            color: var(--blue-dark);
+        }
+
+        .navbar-izumi .dropdown-toggle::after {
+            margin-left: 8px;
+        }
+
+        /* Мобильное меню (оригинальное) */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s;
+        }
+        .mobile-menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85%, 360px);
+            height: 100%;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            z-index: 201;
+            transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 20px 32px;
+            overflow-y: auto;
+        }
+        .mobile-menu-overlay.active .mobile-menu-container {
+            right: 0;
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 30px;
+        }
+        .close-menu-btn {
+            font-size: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-text);
+            line-height: 1;
+        }
+        .mobile-search {
+            margin-bottom: 32px;
+            width: 100%;
+        }
+        .mobile-search input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid var(--blue);
+            border-radius: 30px;
+            padding: 0 20px;
+            font-size: 16px;
+            outline: none;
+            background: #fff;
+            color: var(--text);
+        }
+        .mobile-search input::placeholder {
+            color: var(--blue);
+        }
+        .mobile-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .mobile-nav-list a {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            padding: 6px 0;
+            border-bottom: 1px solid var(--gray-mid);
+            display: block;
+        }
+        .mobile-nav-list a:active {
+            color: var(--blue);
+        }
+        .mobile-menu-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            font-size: 12px;
+            color: var(--gray-text);
+            text-align: center;
+        }
+
+        /* ===== HERO — BOOTSTRAP CAROUSEL ===== */
+        .hero-wrapper {
+            padding: 40px 0 60px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-carousel {
+            max-width: 1220px;
+            width: 100%;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-carousel .carousel-item {
+            position: relative;
+            min-height: 380px;
+        }
+
+        .hero-carousel .carousel-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .hero-overlay-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 50px 60px;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .hero-overlay-content h1 {
+            color: #fff;
+            font-size: 36px;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, text-shadow 0.3s;
+            pointer-events: auto;
+        }
+
+        .hero-overlay-content h1:hover {
+            transform: scale(1.02);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-list li {
+            font-size: 20px;
+            font-weight: 500;
+            padding: 6px 0 6px 32px;
+            position: relative;
+            transition: transform 0.2s, color 0.2s;
+            cursor: default;
+            pointer-events: auto;
+        }
+
+        .hero-list li:hover {
+            transform: translateX(8px);
+            color: #fff;
+        }
+
+        .hero-list li::before {
+            content: "○";
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            font-size: 20px;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        .hero-list li:hover::before {
+            transform: scale(1.2);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #8FB2DD;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 26px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            pointer-events: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: rgba(255, 255, 255, .4);
+            transform: skewX(-25deg);
+        }
+
+        .btn-primary:hover::before {
+            left: 140%;
+            transition: .7s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #ff8fd8, #b388ff, #84d8ff);
+            color: white;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Карусельные кнопки — поверх */
+        .hero-carousel .carousel-control-prev,
+        .hero-carousel .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .hero-carousel:hover .carousel-control-prev,
+        .hero-carousel:hover .carousel-control-next {
+            opacity: 0.8;
+        }
+
+        .hero-carousel .carousel-control-prev {
+            left: 20px;
+        }
+        .hero-carousel .carousel-control-next {
+            right: 20px;
+        }
+
+        .hero-carousel .carousel-indicators {
+            bottom: 20px;
+            gap: 14px;
+        }
+
+        .hero-carousel .carousel-indicators button {
+            width: 44px;
+            height: 5px;
+            background: #cbd5e1;
+            border-radius: 8px;
+            border: none;
+            opacity: 0.8;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .hero-carousel .carousel-indicators button.active {
+            background: #7db0d9;
+            width: 70px;
+            opacity: 1;
+            box-shadow: 0 0 6px rgba(125, 176, 217, 0.6);
+        }
+
+        .hero-carousel .carousel-indicators button:hover {
+            opacity: 1;
+            transform: scaleY(1.2);
+            background: #9ac2e6;
+        }
+
+        @media (max-width: 900px) {
+            .hero-overlay-content {
+                padding: 30px 30px;
+            }
+            .hero-overlay-content h1 {
+                font-size: 28px;
+                margin-bottom: 16px;
+            }
+            .hero-list li {
+                font-size: 16px;
+                padding: 4px 0 4px 28px;
+            }
+            .hero-list li::before {
+                font-size: 16px;
+                top: 4px;
+            }
+            .btn-primary {
+                margin-top: 24px;
+                padding: 10px 22px;
+                font-size: 14px;
+            }
+            .hero-carousel .carousel-indicators button {
+                width: 32px;
+            }
+            .hero-carousel .carousel-indicators button.active {
+                width: 52px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .hero-overlay-content {
+                padding: 20px 20px;
+            }
+            .hero-overlay-content h1 {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+            .hero-list li {
+                font-size: 13px;
+                padding: 3px 0 3px 24px;
+            }
+            .hero-list li::before {
+                font-size: 13px;
+                top: 3px;
+                left: 2px;
+            }
+            .btn-primary {
+                margin-top: 18px;
+                padding: 8px 18px;
+                font-size: 12px;
+            }
+            .hero-carousel .carousel-indicators button {
+                width: 28px;
+                height: 4px;
+            }
+            .hero-carousel .carousel-indicators button.active {
+                width: 48px;
+            }
+            .hero-carousel .carousel-control-prev,
+            .hero-carousel .carousel-control-next {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-overlay-content {
+                padding: 14px 16px;
+            }
+            .hero-overlay-content h1 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            .hero-list li {
+                font-size: 11px;
+                padding: 2px 0 2px 20px;
+            }
+            .hero-list li::before {
+                font-size: 11px;
+                top: 2px;
+            }
+            .btn-primary {
+                margin-top: 12px;
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+        }
+
+        /* ===== ГРАДИЕНТ НА ЗАГОЛОВКАХ (исключаем аккордеон) ===== */
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 90px;
+            height: 4px;
+            margin: 12px auto 0;
+            background: #84A7D5;
+            border-radius: 999px;
+            transition: all .4s ease;
+        }
+
+        .section-title:hover,
+        .instagram-text:hover,
+        h1:not(.hero-title):not(.accordion-header):hover,
+        h2:not(.accordion-header):hover,
+        h3:not(.accordion-header):hover {
+            background: linear-gradient(90deg, #ff8fd8, #c8a2ff, #84d8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Явно отключаем градиент для заголовков аккордеона */
+        .accordion-header h2,
+        .accordion-button {
+            -webkit-text-fill-color: initial !important;
+            background: none !important;
+        }
+
+        .section-title:hover::after {
+            width: 130px;
+            background: linear-gradient(90deg, #ff8fd8, #c8a2ff, #84d8ff);
+            box-shadow: 0 0 8px rgba(255, 143, 216, .5), 0 0 16px rgba(132, 216, 255, .4);
+        }
+
+        /* ===== КАРТОЧКИ ===== */
+        .product-card img,
+        .insta-item img {
+            transition: transform .5s ease;
+        }
+
+        .product-card:hover img,
+        .insta-item:hover img {
+            transform: scale(1.08);
+        }
+        .product-card:hover,
+        .insta-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(132, 167, 213, .25);
+        }
+        .insta-item:hover {
+            box-shadow: 0 0 20px rgba(255, 143, 216, .4), 0 0 40px rgba(132, 216, 255, .4);
+        }
+
+        .product-card {
+            position: relative;
+        }
+
+        .product-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #ff8fd8, #84d8ff);
+            border-radius: inherit;
+            opacity: 0;
+            z-index: -1;
+            transition: .4s;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card h3,
+        .catalog-card h3 {
+            transition: .3s;
+        }
+
+        .product-card:hover h3,
+        .catalog-card:hover h3 {
+            transform: translateY(-4px);
+        }
+
+        .instagram-account:hover {
+            color: #84A7D5;
+            text-shadow: 0 0 5px #84d8ff, 0 0 15px #84d8ff, 0 0 25px #84d8ff;
+        }
+
+        /* ===== ОСНОВНЫЕ СЕКЦИИ ===== */
+        .usp {
+            padding: 64px 0;
+            background: #ffffff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .section-arrows {
+            position: absolute;
+            right: 0;
+            display: flex;
+            gap: 12px;
+        }
+
+        .arr-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid var(--gray-mid);
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .arr-btn:hover {
+            transform: rotate(360deg) scale(1.1);
+            background: #84d8ff;
+            border-color: #84d8ff;
+            color: white;
+            box-shadow: 0 0 10px rgba(18, 99, 119, 0.5);
+        }
+
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px 48px;
+        }
+        .usp-item p {
+            font-size: 17px;
+            line-height: 1.5;
+            font-weight: 500;
+            color: #2d3e4f;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .usp-item p::before {
+            content: "=";
+            color: var(--blue);
+            font-weight: 800;
+            font-size: 24px;
+            transform: scaleX(1.2);
+        }
+        .usp-item:hover p {
+            transform: translateX(6px);
+            color: var(--blue-dark);
+        }
+
+        .products-section,
+        .catalog-section,
+        .designs-section {
+            padding: 56px 0;
+            background: #ffffff;
+        }
+
+        .products-grid,
+        .catalog-grid,
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 22px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .products-grid::-webkit-scrollbar,
+        .catalog-grid::-webkit-scrollbar,
+        .design-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card,
+        .catalog-card,
+        .design-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--gray-mid);
+            transition: all 0.25s;
+            overflow: hidden;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .product-card:hover,
+        .catalog-card:hover,
+        .design-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 30px rgba(125, 176, 217, 0.15);
+            border-color: var(--blue);
+        }
+
+        .product-card-img,
+        .catalog-card-img,
+        .design-card-img {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+        .product-card-img img,
+        .catalog-card-img img,
+        .design-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.3s;
+        }
+
+        .product-card:hover .product-card-img img {
+            transform: rotateX(6deg) rotateY(8deg) scale(1.08);
+            filter: brightness(1.02) contrast(1.05);
+        }
+        .catalog-card:hover .catalog-card-img img {
+            transform: scale(1.1) translateY(-5px);
+            filter: brightness(1.03);
+        }
+        .design-card:hover .design-card-img img {
+            transform: rotate(2deg) scale(1.05);
+            filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+        }
+
+        .insta-item:hover img {
+            transform: rotate(3deg) scale(1.12);
+            filter: brightness(0.96) contrast(1.04);
+            transition: transform 0.4s ease, filter 0.3s;
+        }
+        .insta-1:hover img {
+            transform: rotate(-2deg) scale(1.12);
+        }
+        .insta-2:hover img {
+            transform: rotate(4deg) scale(1.12);
+        }
+        .insta-3:hover img {
+            transform: rotate(-3deg) scale(1.12);
+        }
+        .insta-4:hover img {
+            transform: rotate(2deg) scale(1.12);
+        }
+        .insta-5:hover img {
+            transform: rotate(-1deg) scale(1.12);
+        }
+        .insta-6:hover img {
+            transform: rotate(5deg) scale(1.12);
+        }
+        .insta-7:hover img {
+            transform: rotate(-4deg) scale(1.12);
+        }
+
+        .insta-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .insta-item:hover::after {
+            opacity: 1;
+        }
+
+        .strip-item:hover {
+            transform: translateY(-12px) scale(1.15) rotate(2deg);
+            box-shadow: 0 20px 20px -10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .heart-icon {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .heart-icon:hover {
+            animation: bounceSoft 0.4s ease;
+            color: #ff6b6b;
+            transform: scale(1.2);
+        }
+        @keyframes bounceSoft {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.4) rotate(10deg);
+            }
+        }
+
+        .how-text-card {
+            transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .how-text-card:hover {
+            transform: translateX(12px);
+            border-left: 5px solid var(--blue);
+            box-shadow: 8px 12px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-how {
+            transition: all 0.25s;
+            display: inline-block;
+            background: var(--blue);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-how:hover {
+            animation: gentleGlow 0.4s ease;
+            background: var(--blue-dark);
+            transform: scale(1.03);
+            box-shadow: 0 6px 14px rgba(125, 176, 217, 0.4);
+            color: #fff;
+        }
+        @keyframes gentleGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(125, 176, 217, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(125, 176, 217, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(125, 176, 217, 0);
+            }
+        }
+
+        .footer-column a {
+            transition: transform 0.2s, color 0.2s, text-decoration 0.2s;
+            display: inline-block;
+        }
+        .footer-column a:hover {
+            transform: translateX(6px);
+            color: var(--blue-dark);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        .footer-logo img {
+            transition: transform 0.3s;
+        }
+        .footer-logo img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .product-slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 0 4px;
+        }
+        .product-slider-dots span {
+            width: 6px;
+            height: 6px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+        .product-slider-dots span.active {
+            background: var(--blue);
+            width: 18px;
+            border-radius: 3px;
+        }
+        .catalog-slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 8px 0 4px;
+        }
+        .catalog-slider-dots span {
+            width: 5px;
+            height: 5px;
+            background: #cbd5e1;
+            border-radius: 50%;
+        }
+        .catalog-slider-dots span.active {
+            background: var(--blue);
+            width: 14px;
+            border-radius: 3px;
+        }
+
+        .product-card-body,
+        .catalog-card-body {
+            padding: 12px 12px 16px;
+        }
+        .product-card-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .product-card-sub {
+            font-size: 12px;
+            color: var(--gray-text);
+            margin-bottom: 4px;
+        }
+        .price {
+            font-weight: 800;
+            color: #1e2a32;
+            font-size: 16px;
+            margin-top: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .design-card-name-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px;
+        }
+        .design-card-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .catalog-footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .catalog-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 32px;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--blue);
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .catalog-view-all:hover {
+            background: rgba(125, 176, 217, 0.1);
+        }
+
+        .how-section {
+            background: #ffffff;
+            padding: 64px 0;
+        }
+        .how-vertical {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .how-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .how-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .how-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--blue-dark);
+            letter-spacing: -0.2px;
+        }
+        .how-text-card {
+            background: white;
+            border-radius: 0;
+            padding: 20px 28px;
+            border: 1px solid var(--gray-mid);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            min-width: 280px;
+            max-width: 320px;
+        }
+        .how-text-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .how-text-card p {
+            font-size: 14px;
+            line-height: 1.4;
+            color: var(--text);
+            margin: 0;
+        }
+        .decor-arrow {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--blue);
+            white-space: nowrap;
+        }
+        .how-step-img {
+            width: 160px;
+            height: 160px;
+            background: #ffffff;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .how-step-img:hover {
+            transform: scale(1.04) rotate(2deg);
+            filter: brightness(0.98);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== INSTAGRAM ===== */
+        .instagram-section {
+            padding: 60px 0;
+            background: #fff;
+        }
+        .instagram-layout {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 220px 220px 220px 220px 220px;
+            grid-template-rows: 240px 240px 240px;
+            gap: 20px;
+        }
+        .insta-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, filter 0.3s;
+        }
+        .insta-1 {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .insta-2 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        .insta-3 {
+            grid-column: 3;
+            grid-row: 1;
+        }
+        .insta-4 {
+            grid-column: 4 / span 2;
+            grid-row: 1 / span 2;
+        }
+        .insta-5 {
+            grid-column: 1 / span 2;
+            grid-row: 2 / span 2;
+        }
+        .instagram-center {
+            grid-column: 3;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+        }
+        .insta-6 {
+            grid-column: 3 / span 2;
+            grid-row: 3;
+        }
+        .insta-7 {
+            grid-column: 5;
+            grid-row: 3;
+        }
+        .instagram-icon {
+            width: 70px;
+        }
+        .instagram-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #1e2a32;
+        }
+        .instagram-account {
+            font-size: 20px;
+            color: var(--blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+        .instagram-account:hover {
+            color: #ff8fd8;
+            text-decoration: underline;
+        }
+
+        .gallery-strip {
+            padding: 30px 0 40px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .strip-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 12px;
+            padding: 0 24px;
+        }
+        .strip-item {
+            flex: 0 0 auto;
+            width: 60px;
+            height: 29px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.25s cubic-bezier(.2, .9, .4, 1.1), box-shadow .2s;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .02);
+        }
+        .strip-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            background: #f5f5f5;
+            padding: 50px 0 40px;
+        }
+        .footer-top {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 130px 1fr 1fr 1fr 1fr;
+            gap: 55px;
+            align-items: start;
+        }
+        .footer-logo img {
+            width: 105px;
+            height: auto;
+            display: block;
+        }
+        .footer-column h4 {
+            margin: 0 0 14px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+        }
+        .footer-column a {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        .footer-bottom {
+            max-width: 1180px;
+            margin: 18px auto 0;
+            display: grid;
+            grid-template-columns: 130px 1fr 1fr 1fr 1fr;
+            gap: 55px;
+        }
+        .footer-copy,
+        .footer-policy,
+        .footer-agreement {
+            font-size: 12px;
+            color: #b0b0b0;
+            line-height: 1.2;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        .footer-policy:hover,
+        .footer-agreement:hover {
+            color: #84A7D5;
+            text-decoration: underline;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 1100px) {
+            .products-grid,
+            .catalog-grid,
+            .design-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .section-arrows {
+                position: relative;
+                justify-content: center;
+                margin-top: 20px;
+                right: auto;
+            }
+        }
+
+        /* ===== ОСНОВНОЙ АДАПТИВ ШАПКИ (до 900px) ===== */
+        @media (max-width: 900px) {
+            .burger-btn {
+                display: flex;
+            }
+            .navbar-izumi {
+                display: none !important;
+            }
+            /* Перестраиваем header-top: бургер | логотип | иконки */
+            .header-top {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 16px;
+                position: relative;
+                height: auto;
+            }
+            .burger-btn {
+                grid-column: 1;
+                justify-self: start;
+            }
+            .header-logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+                grid-column: 2;
+                justify-self: center;
+            }
+            .header-logo img {
+                height: 50px;
+            }
+            .header-icons {
+                grid-column: 3;
+                justify-self: end;
+            }
+            .header-search {
+                display: none !important;
+            }
+
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                text-align: center;
+            }
+            .footer-logo {
+                grid-column: span 2;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            .footer-logo img {
+                margin: 0 auto;
+            }
+            .footer-bottom {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                text-align: center;
+            }
+            .footer-bottom>div:first-child,
+            .footer-bottom>div:last-child {
+                display: none;
+            }
+            .footer-copy {
+                grid-column: 1;
+            }
+            .footer-policy {
+                grid-column: 2;
+            }
+            .footer-agreement {
+                grid-column: span 2;
+                margin-top: 10px;
+            }
+
+            .how-row {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .how-text-wrapper {
+                align-items: center;
+            }
+            .products-grid,
+            .catalog-grid,
+            .design-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .usp-grid {
+                grid-template-columns: 1fr;
+            }
+            .strip-item {
+                width: 50px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .products-grid,
+            .catalog-grid,
+            .design-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 26px;
+            }
+            .footer-top {
+                gap: 20px;
+            }
+            .strip-item {
+                width: 40px;
+                height: 19px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .instagram-section {
+                padding: 60px 20px;
+            }
+            .instagram-layout {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .instagram-center {
+                grid-column: 1 / -1;
+                order: -1;
+                min-height: 220px;
+                padding: 30px;
+            }
+            .insta-item {
+                height: 280px;
+            }
+            .insta-1,
+            .insta-2,
+            .insta-3,
+            .insta-4,
+            .insta-5,
+            .insta-6,
+            .insta-7 {
+                grid-column: auto !important;
+                grid-row: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .instagram-layout {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .insta-item {
+                height: 220px;
+            }
+            .instagram-center {
+                min-height: 180px;
+                padding: 20px;
+            }
+            .instagram-text {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .instagram-layout {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .insta-item {
+                width: 100%;
+                height: 260px;
+            }
+            .insta-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .instagram-center {
+                min-height: 150px;
+                padding: 20px 15px;
+            }
+            .instagram-text {
+                font-size: 18px;
+            }
+            .instagram-account {
+                font-size: 14px;
+            }
+        }
+        /* ===== ИСПРАВЛЕНИЕ СЛАЙДЕРА НА ТЕЛЕФОНАХ ===== */
+@media (max-width: 650px) {
+    .hero-overlay-content {
+        padding: 20px 20px !important;
+        justify-content: center !important; /* Центрируем по вертикали */
+        align-items: flex-start !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important; /* Усиливаем тень для читаемости */
+    }
+
+    .hero-overlay-content h1 {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-list li {
+        font-size: 12px !important;
+        padding: 2px 0 2px 20px !important;
+    }
+
+    .hero-list li::before {
+        font-size: 11px !important;
+        top: 2px !important;
+        left: 2px !important;
+    }
+
+    .btn-primary {
+        margin-top: 12px !important;
+        padding: 6px 14px !important;
+        font-size: 11px !important;
+    }
+
+    .hero-carousel .carousel-indicators button {
+        width: 24px !important;
+        height: 4px !important;
+    }
+
+    .hero-carousel .carousel-indicators button.active {
+        width: 40px !important;
+    }
+
+    .hero-carousel .carousel-control-prev,
+    .hero-carousel .carousel-control-next {
+        width: 30px !important;
+        height: 30px !important;
+        opacity: 0.6 !important;
+    }
+
+    .hero-carousel .carousel-item {
+        min-height: 280px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-overlay-content {
+        padding: 12px 14px !important;
+        justify-content: center !important;
+    }
+
+    .hero-overlay-content h1 {
+        font-size: 16px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .hero-list li {
+        font-size: 10px !important;
+        padding: 1px 0 1px 16px !important;
+    }
+
+    .hero-list li::before {
+        font-size: 9px !important;
+        top: 1px !important;
+        left: 1px !important;
+    }
+
+    .btn-primary {
+        margin-top: 8px !important;
+        padding: 5px 12px !important;
+        font-size: 10px !important;
+        border-radius: 20px !important;
+    }
+
+    .hero-carousel .carousel-item {
+        min-height: 220px !important;
+    }
+
+    .hero-carousel .carousel-indicators button {
+        width: 18px !important;
+        height: 3px !important;
+    }
+
+    .hero-carousel .carousel-indicators button.active {
+        width: 30px !important;
+    }
+
+    .hero-carousel .carousel-control-prev,
+    .hero-carousel .carousel-control-next {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .hero-carousel .carousel-control-prev-icon,
+    .hero-carousel .carousel-control-next-icon {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+/* ===== ФИКС ДЛЯ ТЕЛЕФОНОВ: растягиваем фото на весь слайдер ===== */
+@media (max-width: 768px) {
+    .hero-carousel .carousel-inner {
+        height: 100%; /* чтобы дочерние элементы могли занять всю высоту */
+    }
+
+    .hero-carousel .carousel-item {
+        height: 300px;          /* фиксированная высота на планшетах/телефонах */
+        min-height: unset;      /* отключаем старый min-height */
+    }
+
+    .hero-carousel .carousel-item img {
+        height: 100%;           /* теперь изображение заполняет весь слайд */
+        width: 100%;
+        object-fit: cover;      /* сохраняем пропорции, обрезая края */
+    }
+}
+
+/* Для очень маленьких экранов — уменьшаем высоту */
+@media (max-width: 480px) {
+    .hero-carousel .carousel-item {
+        height: 220px;
+    }
+}
+
+/* Дополнительно: если на 650px нужна промежуточная высота — можете добавить */
+@media (max-width: 650px) {
+    .hero-carousel .carousel-item {
+        height: 260px;
+    }
+}
+        /* ===== КНОПКА ДЛЯ МОДАЛКИ ===== */
+        .btn-feedback {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .btn-feedback:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(125, 176, 217, 0.3);
+            color: #fff;
+        }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            z-index: 999;
+        }
+
+        /* ===== ПОПОВЕР (удалён, но стили оставлены на всякий случай) ===== */
+        .popover {
+            border-radius: 16px;
+            border: 1px solid var(--gray-mid);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            font-family: var(--font);
+        }
+        .popover-header {
+            background: var(--blue-light);
+            color: var(--text);
+            font-weight: 600;
+            border-radius: 16px 16px 0 0;
+        }
+
+        /* ===== ACCORDION ===== */
+        .accordion-izumi .accordion-item {
+            border: 1px solid var(--gray-mid);
+            border-radius: 16px !important;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .accordion-izumi .accordion-button {
+            font-weight: 600;
+            color: var(--text) !important;
+            background: #fff !important;
+            padding: 18px 24px;
+            -webkit-text-fill-color: var(--text) !important;
+        }
+        .accordion-izumi .accordion-button:not(.collapsed) {
+            color: var(--blue-dark) !important;
+            background: var(--gray-light) !important;
+            box-shadow: none;
+            -webkit-text-fill-color: var(--blue-dark) !important;
+        }
+        .accordion-izumi .accordion-button:focus {
+            box-shadow: 0 0 0 3px rgba(125, 176, 217, 0.3);
+            border-color: var(--blue);
+        }
+        .accordion-izumi .accordion-body {
+            padding: 20px 24px;
+            color: var(--gray-text);
+        }
+        /* Явно отключаем градиент для кнопок аккордеона */
+        .accordion-izumi .accordion-button:hover {
+            background: #fff !important;
+            color: var(--text) !important;
+            -webkit-text-fill-color: var(--text) !important;
+        }
+        .accordion-izumi .accordion-button:not(.collapsed):hover {
+            background: var(--gray-light) !important;
+            color: var(--blue-dark) !important;
+            -webkit-text-fill-color: var(--blue-dark) !important;
+        }
+
+        /* ===== OFFCANVAS ===== */
+        .offcanvas-izumi .offcanvas-header {
+            border-bottom: 1px solid var(--gray-mid);
+        }
+        .offcanvas-izumi .offcanvas-title {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .offcanvas-izumi .btn-close:focus {
+            box-shadow: 0 0 0 3px rgba(125, 176, 217, 0.3);
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainMenu" data-bs-smooth-scroll="true" tabindex="0">
+
+    <!-- ===== ШАПКА ===== -->
+    <header>
+        <div class="header-top">
+            <!-- Бургер -->
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">☰</button>
+
+            <!-- Поиск -->
+            <div class="header-search">
+                <input type="search" placeholder="Поиск">
+            </div>
+
+            <!-- Логотип (уменьшен) -->
+            <a href="#" class="header-logo">
+                <img src="image/Group 26.png" alt="IZUMI logo">
+            </a>
+
+            <!-- Иконки -->
+            <div class="header-icons">
+                <button aria-label="Избранное" data-bs-toggle="tooltip" title="Избранное">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </button>
+                <button aria-label="Аккаунт" data-bs-toggle="tooltip" title="Личный кабинет">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </button>
+                <button aria-label="Корзина" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== 1. NAVBAR + 2. DROPDOWN (Bootstrap) ===== -->
+        <nav class="navbar navbar-expand-lg navbar-izumi" id="mainMenu">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIzumi">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarIzumi">
+                    <!-- Левая группа -->
+                    <ul class="navbar-nav navbar-nav-left">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                Каталог дизайнов
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#kids">Для детей</a></li>
+                                <li><a class="dropdown-item" href="#women">Для женщин</a></li>
+                                <li><a class="dropdown-item" href="#men">Для мужчин</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Все дизайны</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                Каталог продукции
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#catalog">Термосы</a></li>
+                                <li><a class="dropdown-item" href="#catalog">Керамика</a></li>
+                                <li><a class="dropdown-item" href="#catalog">Пластик</a></li>
+                                <li><a class="dropdown-item" href="#catalog">Металлоизделия</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Правая группа -->
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item"><a class="nav-link" href="#about">О нас</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#delivery">Оплата и доставка</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== МОБИЛЬНОЕ МЕНЮ (оригинальное) ===== -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-container">
+            <div class="mobile-menu-header">
+                <button class="close-menu-btn" id="closeMenuBtn">&times;</button>
+            </div>
+            <div class="mobile-search">
+                <input type="search" placeholder="Поиск товаров и дизайнов..." id="mobileSearchInput">
+            </div>
+            <div class="mobile-nav-list">
+                <a href="#">Каталог дизайнов</a>
+                <a href="#">Каталог продукции</a>
+                <a href="#">О нас</a>
+                <a href="#">Оплата и доставка</a>
+                <a href="#">Контакты</a>
+            </div>
+            <div class="mobile-menu-footer">
+                <div>IZUMI — посуда с душой</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 3. OFFCANVAS — Корзина ===== -->
+    <div class="offcanvas offcanvas-end offcanvas-izumi" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">🛒 Корзина</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="text-center py-5">
+                <p class="text-muted">Ваша корзина пока пуста</p>
+                <p class="small text-muted">Добавьте товары, чтобы оформить заказ</p>
+                <button class="btn btn-primary mt-3" data-bs-dismiss="offcanvas">Продолжить покупки</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+
+        <!-- ===== 10. CAROUSEL ===== -->
+        <div class="hero-wrapper">
+            <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+
+                <!-- Индикаторы -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+                </div>
+
+                <!-- Слайды -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="image/image 88.png" class="d-block w-100" alt="Набор именной посуды">
+                        <div class="hero-overlay-content">
+                            <h1 class="hero-title">Набор именной посуды для девочки</h1>
+                            <ul class="hero-list">
+                                <li>детский термос</li>
+                                <li>тарелка</li>
+                                <li>кружка</li>
+                                <li>ланч-бокс</li>
+                            </ul>
+                            <a href="#" class="btn-primary">Собрать свой набор</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image/2.png" class="d-block w-100" alt="Именная посуда">
+                        <div class="hero-overlay-content">
+                            <h1>Именные кружки для всей семьи</h1>
+                            <ul class="hero-list">
+                                <li>керамика</li>
+                                <li>термос</li>
+                                <li>ланч-бокс</li>
+                            </ul>
+                            <a href="#" class="btn-primary">Выбрать дизайн</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image/3.png" class="d-block w-100" alt="Детская посуда">
+                        <div class="hero-overlay-content">
+                            <h1>Детские дизайны с именами</h1>
+                            <ul class="hero-list">
+                                <li>куклы</li>
+                                <li>животные</li>
+                                <li>сказочные герои</li>
+                            </ul>
+                            <a href="#" class="btn-primary">Смотреть все</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image/4.png" class="d-block w-100" alt="Подарочные наборы">
+                        <div class="hero-overlay-content">
+                            <h1>Подарочные наборы</h1>
+                            <ul class="hero-list">
+                                <li>индивидуальная упаковка</li>
+                                <li>именная гравировка</li>
+                                <li>доставка по всей России</li>
+                            </ul>
+                            <a href="#" class="btn-primary">Заказать подарок</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Управление -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== USP ===== -->
+        <section class="usp" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Создаём изумительные вещи</h2>
+                </div>
+                <div class="usp-grid">
+                    <div class="usp-item"><p>Продаём термосы, керамическую посуду, металлические и другие изделия с печатью наших иллюстраций</p></div>
+                    <div class="usp-item"><p>Каждый дизайн можно нанести на любую нашу продукцию (кружки, тарелки, ланч-боксы, спортивные бутылки и др.)</p></div>
+                    <div class="usp-item"><p>В любой наш дизайн можно добавить имя или инициалы</p></div>
+                    <div class="usp-item"><p>Разрабатываем индивидуальный дизайн за дополнительную плату</p></div>
+                    <div class="usp-item"><p>К выбранной иллюстрации можно добавить любую фразу из нашего каталога.</p></div>
+                    <div class="usp-item"><p>Выбирайте для себя или в подарок, дарите не просто полезные вещи, но и приятные эмоции.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== НОВИНКИ ===== -->
+        <section class="products-section" id="novinki">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Новинки</h2>
+                    <div class="section-arrows">
+                        <button class="arr-btn prev" data-section="novinki">‹</button>
+                        <button class="arr-btn next" data-section="novinki">›</button>
+                    </div>
+                </div>
+                <div class="products-grid" data-grid="novinki">
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (3).png" alt="Термокружка"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Термокружка белая 500 мл</p>
+                            <p class="product-card-sub">Наконец-то отпуск!</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (4).png" alt="Термокружка"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Термокружка белая 500 мл</p>
+                            <p class="product-card-sub">Наконец-то отпуск</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126.png" alt="Кружка латте"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Кружка латте 480 мл</p>
+                            <p class="product-card-sub">Счастливый хаски</p>
+                            <div class="price">850 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (1).png" alt="Детский термос"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Детский термос розовый 500 мл</p>
+                            <p class="product-card-sub">Кукла Лиза, фон №2</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (2).png" alt="Детский термос"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Детский термос синий 500 мл</p>
+                            <p class="product-card-sub">Кукла Принцесса фон №4</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ПОПУЛЯРНОЕ ===== -->
+        <section class="products-section" style="background: #ffffff;" id="popular">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Популярное</h2>
+                    <div class="section-arrows">
+                        <button class="arr-btn prev" data-section="popular">‹</button>
+                        <button class="arr-btn next" data-section="popular">›</button>
+                    </div>
+                </div>
+                <div class="products-grid" data-grid="popular">
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (3).png" alt="Термокружка"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Термокружка белая 500 мл</p>
+                            <p class="product-card-sub">Наконец-то отпуск!</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (4).png" alt="Термокружка"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Термокружка белая 500 мл</p>
+                            <p class="product-card-sub">Наконец‑то отпуск!</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126.png" alt="Кружка латте"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Кружка латте 480 мл</p>
+                            <p class="product-card-sub">Счастливый хаски</p>
+                            <div class="price">850 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (1).png" alt="Детский термос"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Детский термос розовый 500 мл</p>
+                            <p class="product-card-sub">Кукла Лиза. фон №2</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-img"><img src="image/Rectangle 126 (2).png" alt="Детский термос"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="product-card-body">
+                            <p class="product-card-name">Детский термос синий 500 мл</p>
+                            <p class="product-card-sub">Кукла Принцесса фон №4</p>
+                            <div class="price">1590 ₽ <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== КАТАЛОГ ПРОДУКЦИИ ===== -->
+        <section class="catalog-section" id="catalog">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Наша продукция</h2>
+                    <div class="section-arrows">
+                        <button class="arr-btn prev" data-section="catalog">‹</button>
+                        <button class="arr-btn next" data-section="catalog">›</button>
+                    </div>
+                </div>
+                <div class="catalog-grid" data-grid="catalog">
+                    <div class="catalog-card">
+                        <div class="catalog-card-img"><img src="image/Rectangle 126 (5).png" alt="Термокружка"></div>
+                        <div class="catalog-slider-dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="catalog-card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="catalog-card-name">Термокружка 0.5</p>
+                                <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                            </div>
+                            <div class="price" style="margin-top: 6px;">1360 ₽</div>
+                        </div>
+                    </div>
+                    <div class="catalog-card">
+                        <div class="catalog-card-img"><img src="image/Rectangle 126 (6).png" alt="Термокружка"></div>
+                        <div class="catalog-slider-dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="catalog-card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="catalog-card-name">Термокружка 0.5+</p>
+                                <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                            </div>
+                            <div class="price" style="margin-top: 6px;">1490 ₽</div>
+                        </div>
+                    </div>
+                    <div class="catalog-card">
+                        <div class="catalog-card-img"><img src="image/Rectangle 126 (7).png" alt="Детский термос"></div>
+                        <div class="catalog-slider-dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="catalog-card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="catalog-card-name">Детский термос</p>
+                                <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                            </div>
+                            <div class="price" style="margin-top: 6px;">1360 ₽</div>
+                        </div>
+                    </div>
+                    <div class="catalog-card">
+                        <div class="catalog-card-img"><img src="image/Rectangle 126 (8).png" alt="Бутылка"></div>
+                        <div class="catalog-slider-dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="catalog-card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="catalog-card-name">Спорт. бутылка</p>
+                                <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                            </div>
+                            <div class="price" style="margin-top: 6px;">1000 ₽</div>
+                        </div>
+                    </div>
+                    <div class="catalog-card">
+                        <div class="catalog-card-img"><img src="image/Rectangle 126 (9).png" alt="Кружка металл"></div>
+                        <div class="catalog-slider-dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="catalog-card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="catalog-card-name">Кружка металл</p>
+                                <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                            </div>
+                            <div class="price" style="margin-top: 6px;">1360 ₽</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog-footer">
+                    <a href="#" class="catalog-view-all">Посмотреть все изделия <span class="arrow-down">▼</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ДЕТСКИЕ ДИЗАЙНЫ ===== -->
+        <section class="designs-section" id="kids">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Детские дизайны</h2>
+                    <div class="section-arrows">
+                        <button class="arr-btn prev" data-section="kids">‹</button>
+                        <button class="arr-btn next" data-section="kids">›</button>
+                    </div>
+                </div>
+                <div class="design-grid" data-grid="kids">
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17.png" alt="Кейт №1"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Кейт №1</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (1).png" alt="Кукла Мари №1"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Кукла Мари №1</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (2).png" alt="Лиза №2"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Лиза №2</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (3).png" alt="Принцесса №1"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Принцесса №1</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (4).png" alt="Таня №3"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Таня №3</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ЖЕНСКИЕ ДИЗАЙНЫ ===== -->
+        <section class="designs-section" style="background: #ffffff;" id="women">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Женские дизайны</h2>
+                    <div class="section-arrows">
+                        <button class="arr-btn prev" data-section="women">‹</button>
+                        <button class="arr-btn next" data-section="women">›</button>
+                    </div>
+                </div>
+                <div class="design-grid" data-grid="women">
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (5).png" alt="Лисо с дистом"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Лисо с дистом</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (6).png" alt="Олимпийский"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Олимпийский</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (7).png" alt="Летний узор"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Летний узор</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (8).png" alt="Мак"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Мак</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (9).png" alt="5 упр."></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">5 упр.</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== МУЖСКИЕ ДИЗАЙНЫ ===== -->
+        <section class="designs-section" id="men">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Мужские дизайны</h2>
+                    <div class="section-arrows">
+                        <button class="arr-btn prev" data-section="men">‹</button>
+                        <button class="arr-btn next" data-section="men">›</button>
+                    </div>
+                </div>
+                <div class="design-grid" data-grid="men">
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (14).png" alt="Лев"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Лев</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (10).png" alt="Медведь"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Медведь</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (11).png" alt="Надпись"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Надпись</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (12).png" alt="Пара леток"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Пара леток</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                    <div class="design-card">
+                        <div class="design-card-img"><img src="image/Rectangle 17 (13).png" alt="Волк"></div>
+                        <div class="product-slider-dots"><span class="active"></span><span></span><span></span></div>
+                        <div class="design-card-name-wrapper">
+                            <span class="design-card-name">Волк</span>
+                            <span class="heart-icon" data-bs-toggle="tooltip" title="Добавить в избранное">♡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== С ЧЕГО НАЧАТЬ? ===== -->
+        <section class="how-section" id="delivery">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">С чего начать?</h2>
+                </div>
+                <div class="how-vertical">
+                    <div class="how-row">
+                        <div class="how-text-wrapper">
+                            <div class="how-label">Если вы уже ...</div>
+                            <div class="how-text-card">
+                                <h3>выбрали изделие</h3>
+                                <p>и теперь хотите подобрать к нему иллюстрацию</p>
+                            </div>
+                        </div>
+                        <div class="decor-arrow">..&gt;</div>
+                        <img class="how-step-img" src="image/Group 348.png" alt="Пример изделия">
+                        <div class="decor-arrow">..&gt;</div>
+                        <a href="#" class="btn-how">Вам в каталог продукции</a>
+                    </div>
+                    <div class="how-row">
+                        <div class="how-text-wrapper">
+                            <div class="how-label">Или вы сначала...</div>
+                            <div class="how-text-card">
+                                <h3>выбрали иллюстрацию</h3>
+                                <p>и хотите посмотреть, как она выглядит на разных изделиях<br>или вам нужно собрать целый набор</p>
+                            </div>
+                        </div>
+                        <div class="decor-arrow">..&gt;</div>
+                        <img class="how-step-img" src="image/Group 345.png" alt="Пример дизайна">
+                        <div class="decor-arrow">..&gt;</div>
+                        <a href="#" class="btn-how">Вам в каталог дизайнов</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INSTAGRAM ===== -->
+        <section class="instagram-section" id="contacts">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Мы в Instagram</h2>
+                </div>
+                <div class="instagram-layout">
+                    <div class="insta-item insta-1"><img src="image/Rectangle 19.png" alt=""></div>
+                    <div class="insta-item insta-2"><img src="image/Rectangle 117.png" alt=""></div>
+                    <div class="insta-item insta-3"><img src="image/Rectangle 17 (15).png" alt=""></div>
+                    <div class="insta-item insta-4"><img src="image/Rectangle 38.png" alt=""></div>
+                    <div class="insta-item insta-5"><img src="image/jbVlVL4KhDY 1.png" alt=""></div>
+                    <div class="instagram-center">
+                        <img src="image/Group 41.png" alt="" class="instagram-icon">
+                        <div>
+                            <div class="instagram-text">Подписывайтесь</div>
+                            <a href="#" class="instagram-account">@izumi_market</a>
+                        </div>
+                    </div>
+                    <div class="insta-item insta-6"><img src="image/Rectangle 25.png" alt=""></div>
+                    <div class="insta-item insta-7"><img src="image/Rectangle 20.png" alt=""></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ГАЛЕРЕЯ-СТРИП ===== -->
+        <div class="gallery-strip">
+            <div class="strip-container">
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+                <div class="strip-item"><img src="image/Vector (1).png" alt="галерея"></div>
+            </div>
+        </div>
+
+        <!-- ===== 9. ACCORDION (FAQ) ===== -->
+        <section class="container my-5" id="faq">
+            <div class="section-header">
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+            </div>
+            <div class="accordion accordion-izumi" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Как заказать именную посуду?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Выберите изделие из каталога, затем подберите дизайн. На этапе оформления заказа добавьте имя или инициалы. Мы свяжемся с вами для подтверждения макета.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Сколько стоит доставка?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Стоимость доставки зависит от вашего региона. Отправляем по всей России через СДЭК и Почту России. Точную стоимость вы увидите при оформлении заказа.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Можно ли вернуть товар?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Да, вы можете вернуть товар в течение 14 дней с момента получения, если он не был в использовании и сохранён товарный вид. Именная персонализация возврату не подлежит.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Есть ли скидки для оптовых заказов?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Да, для заказов от 10 единиц продукции действуют оптовые скидки. Свяжитесь с нашим менеджером для расчёта индивидуальных условий.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 5. MODAL (обратная связь) ===== -->
+        <div class="text-center mb-5">
+            <button class="btn-feedback" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                Обратная связь
+            </button>
+        </div>
+
+        <!-- Модальное окно -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Обратная связь</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Оставьте свои контакты, и мы свяжемся с вами в ближайшее время.</p>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Ваше имя</label>
+                                <input type="text" class="form-control" placeholder="Иван Иванов">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Телефон или email</label>
+                                <input type="text" class="form-control" placeholder="+7 (999) 123-45-67">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Сообщение</label>
+                                <textarea class="form-control" rows="3" placeholder="Ваш вопрос или пожелание..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 6. TOAST (уведомление) ===== -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="favoriteToast" class="toast" role="alert">
+                <div class="toast-header">
+                    <strong class="me-auto">IZUMI</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    Товар добавлен в избранное!
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-logo"><img src="image/Vector (2).png" alt="IZUMI"></div>
+            <div class="footer-column">
+                <h4>Каталог дизайнов</h4>
+                <a href="#kids">Для детей</a>
+                <a href="#women">Для женщин</a>
+                <a href="#men">Для мужчин</a>
+                <a href="#">Для взрослых</a>
+                <a href="#">Универсальные</a>
+            </div>
+            <div class="footer-column">
+                <h4>Каталог продукции</h4>
+                <a href="#catalog">Термосы</a>
+                <a href="#catalog">Керамика</a>
+                <a href="#catalog">Пластик</a>
+                <a href="#catalog">Металлоизделия</a>
+                <a href="#catalog">Текстиль</a>
+            </div>
+            <div class="footer-column">
+                <h4>Информация</h4>
+                <a href="#about">О компании</a>
+                <a href="#">Сертификаты</a>
+                <a href="#delivery">Оплата и доставка</a>
+                <a href="#contacts">Контакты</a>
+            </div>
+            <div class="footer-column">
+                <h4>Мы в соцсетях</h4>
+                <a href="#">Instagram</a>
+                <a href="#">ВКонтакте</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div></div>
+            <div class="footer-copy">© Интернет-магазин<br>Izumi-маркет, 2021</div>
+            <a href="#" class="footer-policy">Политика<br>конфиденциальности</a>
+            <a href="#" class="footer-agreement">Пользовательское<br>соглашение</a>
+            <div></div>
+        </div>
+    </footer>
+
+    <!-- ===== BOOTSTRAP JS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- ===== ОРИГИНАЛЬНЫЕ СКРИПТЫ ===== -->
+    <script>
+        // ——— Бургер-меню ———
+        const burgerBtn = document.getElementById('burgerBtn');
+        const overlay = document.getElementById('mobileMenuOverlay');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-list a');
+
+        function openMenu() {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (burgerBtn) burgerBtn.addEventListener('click', openMenu);
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        if (overlay) overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeMenu();
+        });
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // ——— Стрелки для прокрутки сеток ———
+        const grids = {
+            novinki: document.querySelector('[data-grid="novinki"]'),
+            popular: document.querySelector('[data-grid="popular"]'),
+            catalog: document.querySelector('[data-grid="catalog"]'),
+            kids: document.querySelector('[data-grid="kids"]'),
+            women: document.querySelector('[data-grid="women"]'),
+            men: document.querySelector('[data-grid="men"]')
+        };
+
+        document.querySelectorAll('.arr-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                const grid = grids[sectionId];
+                if (!grid) return;
+                const isNext = this.classList.contains('next');
+                const scrollAmount = 320;
+                grid.scrollBy({
+                    left: isNext ? scrollAmount : -scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // ——— Анимация появления ———
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.5s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.product-card, .catalog-card, .design-card, .usp-item, .how-row, .insta-item, .strip-item')
+            .forEach(el => observer.observe(el));
+
+        // ===== 7. TOOLTIP =====
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            .forEach(el => new bootstrap.Tooltip(el));
+
+        // ===== 6. TOAST =====
+        function showFavoriteToast() {
+            const toastEl = document.getElementById('favoriteToast');
+            if (toastEl) {
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        }
+
+        document.querySelectorAll('.heart-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showFavoriteToast();
+            });
+        });
+
+        // ===== ScrollSpy =====
+        window.addEventListener('resize', () => {
+            if (bootstrap.ScrollSpy) {
+                const spy = bootstrap.ScrollSpy.getInstance(document.body);
+                if (spy) spy.refresh();
+            }
+        });
+    </script>
+
+</body>
+</html>
